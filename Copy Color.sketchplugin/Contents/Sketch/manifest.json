@@ -1,0 +1,35 @@
+{
+  "author" : "",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "shortcut": "shift cmd c",
+      "name" : "Copy Color",
+      "handlers" : {
+        "run" : "onRun"
+      },
+      "identifier" : "com.rainbow.sketch.copycolor"
+    },
+    {
+      "script" : "script.cocoascript",
+      "shortcut": "shift cmd b",
+      "name" : "Copy Border Color",
+      "handlers" :  {
+        "run": "getBorderColor"
+      },
+      "identifier" : "com.rainbow.sketch.copybordercolor"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "com.rainbow.sketch.copycolor",
+      "com.rainbow.sketch.copybordercolor"
+    ],
+    "title" : "Copy TextColor FillColor"
+  },
+  "identifier" : "com.example.sketch.copycolor",
+  "version" : "1.0",
+  "description" : "Copy Text Color,Fill Color,Board Color",
+  "authorEmail" : "ycditchf@gmail.com",
+  "name" : "Copy Color"
+}

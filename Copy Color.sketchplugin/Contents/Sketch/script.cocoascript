@@ -1,0 +1,73 @@
+var onRun = function(context) {
+
+    var selectedLayers = context.selection;
+    var selectedCount = selectedLayers.count();
+    var doc = context.document;
+
+    if (selectedCount == 0) {
+        [doc showMessage: "Please select a text element"];
+        return;
+    }
+
+    var layer = selectedLayers.firstObject();
+    var hexValue;
+    log(layer.name());
+    log(layer.className());
+
+    if ([layer class] === MSTextLayer) {
+        if (layer.textColor) {
+            hexValue = layer.textColor().immutableModelObject().hexValue().toString();
+            [doc showMessage: "hexValue:" + hexValue]
+        } else {
+            [doc showMessage: "layer.textColor is nil"]
+        }
+    } else if ([layer class] === MSShapeGroup) {
+        var styles = layer.style();
+        var fills = layer.style().fills();
+
+        if (fills.count() > 0) {
+            hexValue = fills.firstObject().color().immutableModelObject().hexValue().toString();
+            [doc showMessage: "hexValue:" + hexValue]
+        } else {
+            [doc showMessage: "layer.fillColor is nil"]
+            // log("layer.fillColor is nil");
+        }
+    }
+
+    var pasteBoard = NSPasteboard.generalPasteboard();
+    pasteBoard.clearContents()
+    pasteBoard.writeObjects([hexValue]);
+
+};
+
+var getBorderColor = function(context) {
+
+    var selectedLayers = context.selection;
+    var selectedCount = selectedLayers.count();
+    var doc = context.document;
+
+    if (selectedCount == 0) {
+        [doc showMessage: "Please select a text element"];
+        return;
+    }
+
+    var layer = selectedLayers.firstObject();
+    var hexValue;
+    log(layer.name());
+    log(layer.className());
+
+    if ([layer class] === MSShapeGroup) {
+        var styles = layer.style();
+        var borders = styles.borders();
+        if (borders.count() > 0) {
+            hexValue = borders.firstObject().color().immutableModelObject().hexValue().toString();
+            [doc showMessage: "hexValue:" + hexValue]
+        } else {
+            [doc showMessage: "borders is nil"]
+        }
+    }
+
+    var pasteBoard = NSPasteboard.generalPasteboard();
+    pasteBoard.clearContents()
+    pasteBoard.writeObjects([hexValue]);
+}
