@@ -17,9 +17,9 @@ var onRun = function(context) {
     if ([layer class] === MSTextLayer) {
         if (layer.textColor) {
             hexValue = layer.textColor().immutableModelObject().hexValue().toString();
-            [doc showMessage: "hexValue:" + hexValue]
+            [doc showMessage: "Text HexValue:" + hexValue]
         } else {
-            [doc showMessage: "layer.textColor is nil"]
+            [doc showMessage: "No Text Color"]
         }
     } else if ([layer class] === MSShapeGroup) {
         var styles = layer.style();
@@ -27,9 +27,9 @@ var onRun = function(context) {
 
         if (fills.count() > 0) {
             hexValue = fills.firstObject().color().immutableModelObject().hexValue().toString();
-            [doc showMessage: "hexValue:" + hexValue]
+            [doc showMessage: "Shape Fill Color HexValue:" + hexValue]
         } else {
-            [doc showMessage: "layer.fillColor is nil"]
+            [doc showMessage: "No Shape FillColor"]
             // log("layer.fillColor is nil");
         }
     }
@@ -61,9 +61,9 @@ var getBorderColor = function(context) {
         var borders = styles.borders();
         if (borders.count() > 0) {
             hexValue = borders.firstObject().color().immutableModelObject().hexValue().toString();
-            [doc showMessage: "hexValue:" + hexValue]
+            [doc showMessage: "Shape Border Color HexValue:" + hexValue]
         } else {
-            [doc showMessage: "borders is nil"]
+            [doc showMessage: "No Shape Borders"]
         }
     }
 
