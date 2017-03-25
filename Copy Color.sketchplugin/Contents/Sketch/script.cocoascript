@@ -1,3 +1,5 @@
+@import "common.js"
+
 var onRun = function(context) {
 
     var selectedLayers = context.selection;
@@ -17,6 +19,7 @@ var onRun = function(context) {
     if ([layer class] === MSTextLayer) {
         if (layer.textColor) {
             hexValue = layer.textColor().immutableModelObject().hexValue().toString();
+            // hexValue = getColorWithObjCStyle(layer.textColor());
             [doc showMessage: "Text HexValue:" + hexValue]
         } else {
             [doc showMessage: "No Text Color"]
